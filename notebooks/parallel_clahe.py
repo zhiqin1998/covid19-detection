@@ -25,7 +25,5 @@ if __name__ == '__main__':
     print(os.cpu_count())
     all_paths = [os.path.join(data_dir, 'COVID-19', x) for x in os.listdir(os.path.join(data_dir, 'COVID-19'))] + [
         os.path.join(data_dir, 'NORMAL', x) for x in os.listdir(os.path.join(data_dir, 'NORMAL'))]
-    st = time.time()
     with Pool(4) as pool:
         pool.map(apply_clahe, all_paths[:4])
-    print(time.time() - st)
