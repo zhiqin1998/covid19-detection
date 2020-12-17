@@ -20,6 +20,7 @@ def apply_clahe(img_path):
 
 
 if __name__ == '__main__':
+    print(os.cpu_count())
     all_paths = [os.path.join(data_dir, 'COVID-19', x) for x in os.listdir(os.path.join(data_dir, 'COVID-19'))] + [
         os.path.join(data_dir, 'NORMAL', x) for x in os.listdir(os.path.join(data_dir, 'NORMAL'))]
     with Pool() as pool:

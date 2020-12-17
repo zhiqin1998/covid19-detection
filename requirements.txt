@@ -1,0 +1,5 @@
+imageio
+numpy
+Pillow
+matplotlib
+tensorflow==2.3.0
