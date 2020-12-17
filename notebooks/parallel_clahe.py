@@ -1,0 +1,26 @@
+import os
+import sys
+
+sys.path.append('../src')
+
+from clahe import run_clahe
+from PIL import Image
+from multiprocessing import Pool
+
+data_dir = '../data/COVID-19 Radiography Database'
+output_dir = '../data/clahe_applied/'
+
+
+def apply_clahe(img_path):
+    equalized = run_clahe(img_path)
+    im = Image.fromarray(equalized)
+    dirs = [output_dir] + os.path.normpath(img_path).split(os.sep)[-2:]
+    output_path = os.path.join(*dirs)
+    im.save(output_path)
+
+
+if __name__ == '__main__':
+    all_paths = [os.path.join(data_dir, 'COVID-19', x) for x in os.listdir(os.path.join(data_dir, 'COVID-19'))] + [
+        os.path.join(data_dir, 'NORMAL', x) for x in os.listdir(os.path.join(data_dir, 'NORMAL'))]
+    with Pool() as pool:
+        pool.map(apply_clahe, all_paths)
