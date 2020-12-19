@@ -4,5 +4,4 @@ Pillow
 matplotlib
 tensorflow==2.3.0
 scikit-learn
-shap
 opencv-python
